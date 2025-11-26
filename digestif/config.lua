@@ -9,26 +9,9 @@ if pre_version then
   config.version = config.version .. "-" .. pre_version
 end
 
-if util.is_command("kpsewhich") then
-  local pipe = io.popen("kpsewhich -var-brace-value=TEXMF")
-  local output = pipe:read("l")
-  local ok, exitt, exitc = pipe:close()
-  if ok and exitt == "exit" and exitc == 0 then
-    config.texmf_dirs = util.imap(
-      function (s) return s:gsub("^!!", "") end,
-      util.path_list_split(output)
-    )
-  elseif config.verbose then
-    util.log("Error running kpsewhich (%s %d)", exitt, exitc)
-  end
-else -- TODO: What should be the default?
-  config.texmf_dirs = {
-    "/usr/local/share/texmf",
-    "/usr/share/texmf",
-    "/usr/share/texlive/texmf-local",
-    "/usr/share/texlive/texmf-dist",
-  }
-end
+config.texmf_dirs = {
+  "/usr/local/lib/texmf",
+}
 
 config.data_dirs = {} -- TODO: What should be the default?
 
