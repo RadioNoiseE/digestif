@@ -1,4 +1,4 @@
-This is a forked version of the awsome digestif by astoff, adding
+This is a forked version of the awesome digestif by astoff, adding
 support for aplTeX which uses a different texmf directory structure,
 and does not provide kpsewhich support.
 
@@ -11,5 +11,10 @@ To install, follow the below procedure:
 | doas install bin/digestif.texlua /usr/local/bin/digestif
 `--------
 
-Optionally, you can remove the tags file under data directory which is
-for macro packages not available in aplTeX.
+Optionally, you can remove the tags files under data directory which
+is for macro packages not available in aplTeX. Only `plain.tags',
+`primitives.tags', `teximpatient.tags' and `texinfo.tags' are needed.
+
+You can use the provided `scripts/extract-apltex.lua' to generate tags
+files for macro packages in your texmf. After generating, make sure
+they are bundled in the zip archive and placed properly.
